@@ -27,7 +27,7 @@ export const products = [
         id: 5,
         name: "F/A-18E Super Hornet",
         price: 40000,
-        imageUrl: "https://ar.salvat.com/colecciones/aviones-combate/images/avion8194x147.png?crc=189790731",
+        imageUrl: "https://ar.salvat.com/colecciones/aviones-combate/images/avion8194x147.png",
     },
       
 ];

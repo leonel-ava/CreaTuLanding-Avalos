@@ -24,17 +24,18 @@ function App() {
     }
 
     return (
-
-        <Box>
-            <Navbar itemsInCart={itemsInCart}  />
-            <Center>
-                <Heading>Productos</Heading>
-            </Center>
-            <ItemListContainer 
-                products={products}
-                onAddToCart={addToCart}
-            />
-        </Box>
+        <main>
+            <Box>
+                <Navbar itemsInCart={itemsInCart} />
+                <Center>
+                    <Heading>Productos</Heading>
+                </Center>
+                <ItemListContainer
+                    products={products}
+                    onAddToCart={addToCart}
+                />
+            </Box>
+        </main>
     );
 }
 
