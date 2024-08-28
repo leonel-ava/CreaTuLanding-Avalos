@@ -12,18 +12,11 @@ import {
 import Navbar from "./components/Navbar/Navbar";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 
-import { 
-    useState,
-    useEffect
-} from "react";
+import { useState } from "react";
 
 import { products } from "./data/products";
 
 function App() {
-    useEffect(() => {
-        document.title = "Diecast Collectors";
-    }, []);
-
     const [itemsInCart, setItemsInCart] = useState(0);
 
     const addToCart = () => {
