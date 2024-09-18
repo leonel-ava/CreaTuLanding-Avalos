@@ -3,17 +3,16 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { Box, Heading, IconButton, Image, Spinner, Stack, Text, Button } from "@chakra-ui/react";
-import { FaMinus, FaPlus } from "react-icons/fa6";
+import { FaMinus, FaPlus, FaTrash } from "react-icons/fa6";
 
 import { getProductById } from "../../data/products";
 import { useCart } from "../../hooks/useCart";
 
 function ItemDetailContainer() {
     const { id } = useParams();
-    const { getProductInCart, addProduct, removeProduct } = useCart();
+    const { getProductInCart, addProduct, removeProduct, setProductQuantity } = useCart();
 
     const [product, setProduct] = useState(null);
-
     const cartProduct = getProductInCart(product);
 
     useEffect(() => {
@@ -63,13 +62,26 @@ function ItemDetailContainer() {
                     direction="row"
                     spacing={4}
                 >
-                    <IconButton
-                        icon={<FaMinus />}
-                        isRound={true}
-                        variant="outline"
-                        aria-label="Quitar del carrito"
-                        onClick={() => removeProduct(product)}
-                    />
+                    {
+                        cartProduct?.quantity > 1 ? (
+                            <IconButton
+                                icon={<FaMinus />}
+                                isRound={true}
+                                variant="outline"
+                                aria-label="Quitar del carrito"
+                                onClick={() => setProductQuantity(product, cartProduct.quantity - 1)}
+                            />
+                        ) : (
+                            <IconButton
+                                icon={<FaTrash />}
+                                isRound={true}
+                                isDisabled={!cartProduct}
+                                variant="outline"
+                                aria-label="Eliminar del carrito"
+                                onClick={() => removeProduct(product)}
+                            />
+                        )
+                    }
 
                     <Button variant="outline">
                         {cartProduct ? cartProduct.quantity : 0}

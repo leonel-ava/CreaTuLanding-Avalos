@@ -9,16 +9,32 @@ export function CartProvider({ children }) {
         return products.find(cartProduct => cartProduct.id == product.id);
     };
 
-    const addProduct = (product) => {
-        const existingIndex = products.findIndex(cartProduct => cartProduct.id === product.id);
-        if (existingIndex >= 0) {
+    const getProductInCartIndex = (product) => {
+        return products.findIndex(cartProduct => cartProduct.id === product.id);
+    };
+
+    const setProductQuantity = (product, quantity) => {
+        if (quantity <= 0) {
+            removeProduct(product);
+            return;
+        }
+
+        const productIndex = getProductInCartIndex(product);
+        if (productIndex >= 0) {
             const updatedProducts = [
-                ...products.slice(0, existingIndex),
-                { ...products[existingIndex], quantity: products[existingIndex].quantity + 1 },
-                ...products.slice(existingIndex + 1)
+                ...products.slice(0, productIndex),
+                { ...products[productIndex], quantity },
+                ...products.slice(productIndex + 1)
             ];
 
             setProducts(updatedProducts);
+        }
+    };
+
+    const addProduct = (product) => {
+        const productIndex = getProductInCartIndex(product);
+        if (productIndex >= 0) {
+            setProductQuantity(product, products[productIndex].quantity + 1);
             return;
         }
 
@@ -47,7 +63,8 @@ export function CartProvider({ children }) {
             getProductInCart,
             addProduct,
             removeProduct,
-            clearCart
+            clearCart,
+            setProductQuantity
         }}>
             {children}
         </CartContext.Provider>
