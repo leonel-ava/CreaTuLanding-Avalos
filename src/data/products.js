@@ -45,7 +45,7 @@ export const categories = [
     },
     {
         id: 2,
-        name: "USA",
+        name: "Estados Unidos",
         imageUrl: "https://ar.salvat.com/colecciones/aviones-combate/images/avion1195x148.png",
     },
 
