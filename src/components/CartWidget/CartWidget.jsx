@@ -1,7 +1,10 @@
 import { IconButton, Badge, Box } from "@chakra-ui/react";
 import { FaShoppingCart } from "react-icons/fa";
+import { useCart } from "../../hooks/useCart";
 
-function CartWidget({ amount }) {
+function CartWidget() {
+    const { cart } = useCart();
+
     return (
         <Box
             position="relative" 
@@ -19,7 +22,7 @@ function CartWidget({ amount }) {
                     right="-10px"
                     padding="0.2em 0.5em"
                 >
-                    {amount}
+                    {cart.length}
                 </Badge>
         </Box>
     );

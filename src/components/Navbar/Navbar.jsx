@@ -1,12 +1,7 @@
-import {
-    Box,
-    Flex,
-    Menu,
-    Stack,
-} from "@chakra-ui/react";
+import { Box, Flex, Menu, Stack } from "@chakra-ui/react";
 import CartWidget from "../CartWidget/CartWidget";
 
-function Navbar({ itemsInCart }) {
+function Navbar() {
     return (
         <Box
             bg="white"
@@ -28,7 +23,7 @@ function Navbar({ itemsInCart }) {
                 <Flex alignItems="center">
                     <Stack direction="row" spacing={7}>
                         <Menu>
-                            <CartWidget amount={itemsInCart} />
+                            <CartWidget />
                         </Menu>
                     </Stack>
                 </Flex>

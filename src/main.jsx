@@ -2,8 +2,8 @@ import "./index.css";
 
 import { extendTheme } from "@chakra-ui/react";
 import { createRoot } from "react-dom/client";
-import { StrictMode } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
+import { CartProvider } from "./contexts/cart.jsx";
 import App from "./App.jsx";
 
 const colors = {
@@ -13,9 +13,9 @@ const colors = {
 const theme = extendTheme({ colors });
 
 createRoot(document.getElementById("root")).render(
-    <StrictMode>
+    <CartProvider>
         <ChakraProvider theme={theme}>
             <App />
         </ChakraProvider>
-    </StrictMode>,
+    </CartProvider>,
 );

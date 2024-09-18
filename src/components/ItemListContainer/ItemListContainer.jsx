@@ -1,56 +1,65 @@
-import {
-    SimpleGrid,
-    Box,
-    Text,
-    Image,
-    Center,
-    Button
-} from "@chakra-ui/react";
-import { FaShoppingCart } from "react-icons/fa";
+import { useState } from "react";
+import { products as allProducts } from "../../data/products";
 
-function ItemListContainer({ products, onAddToCart }) {
+import { Box, Button, Center, Heading, Image, SimpleGrid, Text } from "@chakra-ui/react";
+import { FaEye } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
+function ItemListContainer() {
+    const [products] = useState(allProducts);
+
     return (
-        <SimpleGrid
-            columns={{ sm: 2, md: 3 }}
-            spacing="40px"
-            padding="100px"
-        >
-            {products.map((product) => (
-                <Box
-                    key={product.id}
-                    overflow="hidden"
-                >
-                    <Center>
-                        <Image 
-                            src={product.imageUrl}
-                            alt={product.name}
-                        />
-                    </Center>
+        <Box>
+            <Center>
+                <Heading>Productos</Heading>
+            </Center>
 
-                    <Center>
-                        <Box padding="10px">
-                            <Text fontWeight="bold" fontSize="l">
-                                {product.name}
-                            </Text>
+            <SimpleGrid
+                columns={{ sm: 2, md: 3 }}
+                spacing="40px"
+                padding="100px"
+            >
+                {products.map((product) => (
+                    <Box
+                        key={product.id}
+                        overflow="hidden"
+                    >
+                        <Center>
+                            <Image
+                                src={product.imageUrl}
+                                alt={product.name}
+                            />
+                        </Center>
 
-                            <Center>
-                                <Text fontSize="md">${product.price.toLocaleString("es-ES")}</Text>
-                            </Center>
-                        </Box>
-                    </Center>
+                        <Center>
+                            <Box padding="10px">
+                                <Text
+                                    fontWeight="bold"
+                                    fontSize="l"
+                                >
+                                    {product.name}
+                                </Text>
 
-                    <Center>
-                        <Button
-                            leftIcon={<FaShoppingCart />}
-                            variant="outline"
-                            onClick={onAddToCart}
-                        >
-                            Añadir al Carrito
-                        </Button>
-                    </Center>
-                </Box>
-            ))}
-        </SimpleGrid>
+                                <Center>
+                                    <Text fontSize="md">${product.price.toLocaleString("es-ES")}</Text>
+                                </Center>
+                            </Box>
+                        </Center>
+
+                        <Center>
+                            <Button
+                                leftIcon={<FaEye />}
+                                variant="outline"
+                                as={Link}
+                                to={`/product/${product.id}`}
+                            >
+                                Ver Producto
+                            </Button>
+                        </Center>
+                    </Box>
+                ))}
+            </SimpleGrid>
+        </Box>
     );
 }
 

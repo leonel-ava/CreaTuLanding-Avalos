@@ -4,38 +4,33 @@
 
 import "./App.css";
 
-import {
-    Box,
-    Heading,
-    Center
-} from "@chakra-ui/react";
 import Navbar from "./components/Navbar/Navbar";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
+import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
 
-import { useState } from "react";
-
-import { products } from "./data/products";
+import {
+    BrowserRouter,
+    Route,
+    Routes
+} from "react-router-dom";
 
 function App() {
-    const [itemsInCart, setItemsInCart] = useState(0);
-
-    const addToCart = () => {
-        setItemsInCart(itemsInCart + 1);
-    }
-
     return (
-        <main>
-            <Box>
-                <Navbar itemsInCart={itemsInCart} />
-                <Center>
-                    <Heading>Productos</Heading>
-                </Center>
-                <ItemListContainer
-                    products={products}
-                    onAddToCart={addToCart}
-                />
-            </Box>
-        </main>
+        <BrowserRouter>
+            <Navbar />
+
+            <Routes>
+                <Route path="/" element={
+                    <ItemListContainer />
+                } />
+                <Route path="/product/:id" element={
+                    <ItemDetailContainer />
+                } />
+                <Route path="/category/:id" element={
+                    <ItemListContainer />
+                } />
+            </Routes>
+        </BrowserRouter>
     );
 }
 
