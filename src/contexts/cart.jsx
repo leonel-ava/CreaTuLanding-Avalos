@@ -6,11 +6,11 @@ export function CartProvider({ children }) {
     const [products, setProducts] = useState([]);
 
     const getProductInCart = (product) => {
-        return products.find(cartProduct => cartProduct.id == product.id);
+        return products.find(cartProduct => cartProduct.id === product?.id);
     };
 
     const getProductInCartIndex = (product) => {
-        return products.findIndex(cartProduct => cartProduct.id === product.id);
+        return products.findIndex(cartProduct => cartProduct.id === product?.id);
     };
 
     const setProductQuantity = (product, quantity) => {

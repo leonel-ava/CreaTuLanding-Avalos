@@ -1,17 +1,46 @@
-import { useState } from "react";
-import { products as allProducts } from "../../data/products";
+import { useEffect, useState } from "react";
+import { products as allProducts, categories, getCategoryById } from "../../data/products";
 
-import { Box, Button, Center, Heading, Image, SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Heading, Image, SimpleGrid, Text, Menu, MenuButton, MenuList, MenuItem, MenuItemOption, MenuGroup, MenuOptionGroup, MenuDivider } from "@chakra-ui/react";
 import { FaEye } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 
 function ItemListContainer() {
-    const [products] = useState(allProducts);
+    const { id } = useParams();
+
+    const [products, setProducts] = useState(allProducts);
+
+    const categoryName = id === undefined ? "Todo" : getCategoryById(id).name;
+
+    useEffect(() => {
+        setProducts(allProducts.filter(product => {
+            return id === undefined || product.categoryId == id
+        }));
+    }, [id]);
 
     return (
         <Box>
-            <Center>
-                <Heading>Productos</Heading>
+            <Center flexDirection="column">
+                <Heading mb={4}>Productos</Heading>
+
+                <Menu>
+                    <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                        {categoryName}
+                    </MenuButton>
+                    <MenuList>
+                        {categories.map((category) => (
+                            <MenuItemOption
+                                key={category.id}
+                                value={category.id}
+                                as={Link}
+                                to={`/category/${category.id}`}
+                            >
+                                {category.name}
+                            </MenuItemOption>
+                        ))}
+                    </MenuList>
+                </Menu>
             </Center>
 
             <SimpleGrid

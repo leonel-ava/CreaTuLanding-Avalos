@@ -18,7 +18,7 @@ function ItemDetailContainer() {
     useEffect(() => {
         setTimeout(() => {
             setProduct(getProductById(id));
-        }, 500);
+        }, 250);
     }, [id]);
 
     if (!product) {

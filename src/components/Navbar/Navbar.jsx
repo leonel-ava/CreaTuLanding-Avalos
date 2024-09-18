@@ -1,4 +1,4 @@
-import { Box, Flex, Menu, Stack } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import CartWidget from "../CartWidget/CartWidget";
 import { Link } from "react-router-dom";
 
@@ -6,7 +6,7 @@ function Navbar() {
     return (
         <Box
             bg="white"
-            px={4}
+            px={6}
             boxShadow="sm"
         >
             <Flex
@@ -23,13 +23,7 @@ function Navbar() {
                     Diecast Collectors
                 </Box>
 
-                <Flex alignItems="center">
-                    <Stack direction="row" spacing={7}>
-                        <Menu>
-                            <CartWidget />
-                        </Menu>
-                    </Stack>
-                </Flex>
+                <CartWidget />
             </Flex>
         </Box>
     );

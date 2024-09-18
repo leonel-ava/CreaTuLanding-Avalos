@@ -55,6 +55,10 @@ export function getProductById(id) {
     return products.find(product => product.id == id);
 }
 
-export function getProductsByCategoryId(categoryId) {
-    return products.filter(product => product.categoryId == categoryId);
+export function getCategoryById(id) {
+    return categories.find(category => category.id == id);
+}
+
+export function getProductsByCategoryId(id) {
+    return products.filter(product => product.categoryId == id);
 }
