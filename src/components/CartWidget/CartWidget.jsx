@@ -1,11 +1,9 @@
-import { IconButton, Badge, Box, useToast } from "@chakra-ui/react";
+import { IconButton, Badge, Box } from "@chakra-ui/react";
 import { FaShoppingCart } from "react-icons/fa";
 import { useCart } from "../../hooks/useCart";
 
 function CartWidget() {
-    const { cart } = useCart();
-
-    const toast = useToast();
+    const { cart, setOpenDrawer } = useCart();
 
     return (
         <Box
@@ -16,11 +14,7 @@ function CartWidget() {
                 icon={<FaShoppingCart />}
                 aria-label="Cart"
                 onClick={() => {
-                    toast({
-                        title: "Me falta hacerlo :(",
-                        status: "error",
-                        isClosable: true,
-                    });
+                    setOpenDrawer("cart");
                 }}
             />
             <Badge

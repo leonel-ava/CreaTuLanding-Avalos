@@ -1,8 +1,14 @@
 import { Box, Flex } from "@chakra-ui/react";
 import CartWidget from "../CartWidget/CartWidget";
+import CartDrawer from "../CartDrawer/CartDrawer";
 import { Link } from "react-router-dom";
 
+import { useCart } from "../../hooks/useCart";
+import CheckoutDrawer from "../CheckoutDrawer/CheckoutDrawer";
+
 function Navbar() {
+    const { isOpenDrawer } = useCart();
+
     return (
         <Box
             bg="white"
@@ -24,6 +30,9 @@ function Navbar() {
                 </Box>
 
                 <CartWidget />
+
+                {isOpenDrawer("cart") && <CartDrawer />}
+                {isOpenDrawer("checkout") && <CheckoutDrawer />}
             </Flex>
         </Box>
     );

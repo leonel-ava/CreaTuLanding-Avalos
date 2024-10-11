@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
 
-import { Box, Heading, IconButton, Image, Spinner, Stack, Text, Button } from "@chakra-ui/react";
+import { Box, Heading, IconButton, Image, Spinner, Stack, Text, Button, HStack } from "@chakra-ui/react";
 import { FaMinus, FaPlus, FaTrash } from "react-icons/fa6";
 
 import { getProductById } from "../../data/products";
@@ -44,10 +44,7 @@ function ItemDetailContainer() {
             borderRadius="md"
             bg="white"
         >
-            <Stack
-                direction="column"
-                alignItems="center"
-            >
+            <Stack alignItems="center">
                 <Image
                     src={product.imageUrl}
                     alt={product.name}
@@ -58,10 +55,7 @@ function ItemDetailContainer() {
 
                 <Text fontSize="xl">${product.price.toLocaleString("es-ES")}</Text>
 
-                <Stack
-                    direction="row"
-                    spacing={4}
-                >
+                <HStack spacing={4}>
                     {
                         cartProduct?.quantity > 1 ? (
                             <IconButton
@@ -94,7 +88,7 @@ function ItemDetailContainer() {
                         aria-label="Agregar al carrito"
                         onClick={() => addProduct(product)}
                     />
-                </Stack>
+                </HStack>
             </Stack>
         </Box>
     );
